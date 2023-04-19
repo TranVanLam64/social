@@ -1,3 +1,5 @@
+@import "../../style.scss";
+
 .register {
     height: 100vh;
     background: rgba(193, 190, 255);
@@ -14,6 +16,12 @@
         border-radius: 10px;
         overflow: hidden;
 
+        @include mobile {
+            flex-direction: column-reverse;
+            height: 100vh;
+            border-radius: 0px;
+        }
+
 
         .left {
             flex:1;
@@ -27,12 +35,19 @@
             gap: 30px;
             color:white;
 
+
             h1 {
                 font-size: 100px;
                 line-height: 100px;
+
+                @include mobile {
+                    display: none;
+                }
             }
             p {
-
+                @include mobile {
+                    display: none;
+                }
             }
             span {
                 font-size: 14px;
@@ -55,6 +70,10 @@
             flex-direction: column;
             gap: 50px;
             justify-content: center;
+
+            @include mobile {
+                flex: 3;
+            }
 
             h1 {
                 color: #555;
