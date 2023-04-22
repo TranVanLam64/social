@@ -2,7 +2,6 @@ import Post from "../post/Post";
 import "./posts.scss";
 import { useQuery } from "@tanstack/react-query";
 import { makeRequest } from "../../axios.js";
-
 const Posts = () => {
   const { isLoading, error, data } = useQuery(
     ["posts"],
@@ -16,9 +15,13 @@ const Posts = () => {
 
   return (
     <div className="posts">
-      {/* {data.map((post) => {
-        return <Post post={post} key={post.id} />;
-      })} */}
+      {error
+        ? "Something went wrong"
+        : isLoading
+        ? "Loading"
+        : data.map((post) => (
+            <Post post={post} key={post.id} />
+          ))}
     </div>
   );
 };
