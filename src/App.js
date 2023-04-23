@@ -9,7 +9,6 @@ import Home from "./layouts/home/Home";
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
   Outlet,
   Navigate,
 } from "react-router-dom";

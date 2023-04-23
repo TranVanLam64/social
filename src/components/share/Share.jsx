@@ -14,11 +14,44 @@ const Share = () => {
   const [file, setFile] = useState(null);
   const [desc, setDesc] = useState("");
 
+  const upload = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      const res = await makeRequest.post(
+        "/upload",
+        formData
+      );
+      return res.data;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const { currentUser } = useContext(AuthContext);
 
-  const handleClick = (e) => {
+  const queryClient = new useQueryClient();
+
+  const mutation = useMutation(
+    (newPost) => {
+      return makeRequest.post("/posts", newPost);
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["posts"]);
+      },
+    }
+  );
+
+  const handleClick = async (e) => {
     e.preventDefault();
+    let imUrl = "";
+    if (file) imUrl = await upload();
+    mutation.mutate({ desc, img: imUrl });
+    setDesc("");
+    setFile(null);
   };
+
   return (
     <div className="share">
       <div className="container">

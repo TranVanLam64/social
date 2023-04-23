@@ -9,8 +9,26 @@ import LanguageIcon from "@mui/icons-material/Language";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Posts from "../../components/posts/Posts";
+import { useQuery } from "@tanstack/react-query";
+import { makeRequest } from "../../axios";
+import { useLocation } from "react-router-dom";
 
 const Profile = () => {
+  const userId = parseInt(
+    useLocation().pathname.split("/")[2]
+  );
+  const { isLoading, error, data } = useQuery(
+    ["user"],
+    () =>
+      makeRequest
+        .get("/users/find/" + userId)
+        .then((res) => {
+          return res.data;
+        })
+  );
+
+  console.log(data);
+
   return (
     <div className="profile">
       <div className="images">
