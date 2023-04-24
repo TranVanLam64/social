@@ -23,8 +23,6 @@ const Comments = ({ postId }) => {
         })
   );
 
-  console.log(data);
-
   const queryClient = useQueryClient();
 
   const mutation = useMutation(
@@ -62,7 +60,7 @@ const Comments = ({ postId }) => {
         ? "Loading"
         : data.map((comment) => {
             return (
-              <div className="comment">
+              <div className="comment" key={comment.id}>
                 <img src={comment.profilePic} alt="" />
                 <div className="info">
                   <span>{comment.name}</span>

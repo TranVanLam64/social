@@ -34,6 +34,7 @@
             padding: 20px;
             margin-bottom: 20px;
             background-color: themed("bg");
+            border-radius: 5px;
 
             span {
                 color: gray
@@ -70,11 +71,13 @@
 
                     p {
                         color: themed("textColorSoft");
+                        flex:1;
                     }
 
                     span {
                         font-weight: 500;
                         color: themed("textColor");
+                        
                     }
                 }
 
@@ -88,6 +91,7 @@
                         padding: 5px;
                         color: white;
                         cursor: pointer;
+                        border-radius: 5px;
 
                         &:first-child {
                             background-color: #5271ff;
